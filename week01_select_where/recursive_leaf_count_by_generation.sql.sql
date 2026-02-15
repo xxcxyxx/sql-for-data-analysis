@@ -10,7 +10,7 @@
 - LEFT JOIN + IS NULL: leaf 판별
 - GROUP BY: 세대별 집계
 
-로직 흐름:
+로직 흐름: 
 1) parent_id IS NULL → 1세대
 2) 재귀적으로 자식 노드에 generation + 1 부여
 3) 자식이 없는 노드만 필터링
