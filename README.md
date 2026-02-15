@@ -1,5 +1,4 @@
-# sql-for-data-analysis
-SQL coding test practice for data analytics roles
+
 # SQL for Data Analysis
 
 데이터 분석 직무 대비 SQL 코딩테스트 준비 기록입니다.
