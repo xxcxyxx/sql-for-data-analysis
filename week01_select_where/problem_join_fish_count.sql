@@ -1,0 +1,17 @@
+/*
+요약:
+- FISH_INFO와 FISH_NAME_INFO 조인
+- 특정 물고기 이름(BASS, SNAPPER) 필터링
+- 총 개수 집계
+
+핵심:
+- INNER JOIN
+- WHERE IN 조건
+- COUNT 집계
+*/
+
+SELECT COUNT(*) AS FISH_COUNT
+FROM FISH_INFO f
+JOIN FISH_NAME_INFO n
+  ON f.FISH_TYPE = n.FISH_TYPE
+WHERE n.FISH_NAME IN ('BASS', 'SNAPPER');
