@@ -1,0 +1,20 @@
+/*
+요약:
+- 두 테이블 FLAVOR 기준 JOIN
+- TOTAL_ORDER > 3000
+- INGREDIENT_TYPE = 'fruit_based'
+- 총주문량 내림차순 정렬
+
+핵심:
+- INNER JOIN
+- 다중 WHERE 조건
+- ORDER BY DESC
+*/
+
+SELECT f.FLAVOR
+FROM FIRST_HALF f
+JOIN ICECREAM_INFO i
+  ON f.FLAVOR = i.FLAVOR
+WHERE f.TOTAL_ORDER > 3000
+  AND i.INGREDIENT_TYPE = 'fruit_based'
+ORDER BY f.TOTAL_ORDER DESC;
