@@ -1,0 +1,24 @@
+/*
+유형: JOIN + 날짜 필터링 + 다중 정렬
+
+핵심:
+- BOARD와 REPLY를 BOARD_ID 기준 JOIN
+- 게시글 작성일이 2022년 10월인 것만 필터링
+- 댓글 작성일 기준 정렬
+*/
+
+SELECT
+    b.TITLE,
+    b.BOARD_ID,
+    r.REPLY_ID,
+    r.WRITER_ID,
+    r.CONTENTS,
+    DATE_FORMAT(r.CREATED_DATE, '%Y-%m-%d') AS CREATED_DATE
+FROM USED_GOODS_BOARD b
+JOIN USED_GOODS_REPLY r
+  ON b.BOARD_ID = r.BOARD_ID
+WHERE b.CREATED_DATE >= '2022-10-01'
+  AND b.CREATED_DATE < '2022-11-01'
+ORDER BY
+    r.CREATED_DATE ASC,
+    b.TITLE ASC;
