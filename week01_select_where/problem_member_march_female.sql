@@ -1,0 +1,22 @@
+/*
+요약:
+- 3월 출생 여성 회원 조회
+- 전화번호 NULL 제외
+- MEMBER_ID 오름차순 정렬
+
+핵심:
+- MONTH() 함수로 월 추출
+- WHERE 다중 조건
+- NULL 제외 처리
+*/
+
+SELECT
+    MEMBER_ID,
+    MEMBER_NAME,
+    GENDER,
+    DATE_FORMAT(DATE_OF_BIRTH, '%Y-%m-%d') AS DATE_OF_BIRTH
+FROM MEMBER_PROFILE
+WHERE GENDER = 'W'
+  AND TLNO IS NOT NULL
+  AND MONTH(DATE_OF_BIRTH) = 3
+ORDER BY MEMBER_ID ASC;
