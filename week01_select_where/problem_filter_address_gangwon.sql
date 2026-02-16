@@ -1,0 +1,18 @@
+/*
+요약:
+- ADDRESS에 '강원도' 포함된 행 필터링
+- FACTORY_ID 오름차순 정렬
+
+핵심:
+- LIKE 조건
+- 문자열 필터링
+- ORDER BY ASC
+*/
+
+SELECT
+    FACTORY_ID,
+    FACTORY_NAME,
+    ADDRESS
+FROM FOOD_FACTORY
+WHERE ADDRESS LIKE '강원도%'
+ORDER BY FACTORY_ID ASC;
