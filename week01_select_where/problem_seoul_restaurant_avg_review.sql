@@ -1,0 +1,31 @@
+/*
+요약:
+- REST_INFO와 REST_REVIEW를 REST_ID로 JOIN
+- 서울 주소 필터링 (ADDRESS LIKE '서울%')
+- 식당별 평균 리뷰 점수 계산 + 반올림(소수 2자리)
+- 평균점수 DESC, 즐겨찾기 DESC 정렬
+
+핵심:
+- JOIN
+- WHERE LIKE
+- AVG + ROUND
+- GROUP BY
+- 다중 ORDER BY
+*/
+
+SELECT
+    i.REST_ID,
+    i.REST_NAME,
+    i.FOOD_TYPE,
+    i.FAVORITES,
+    i.ADDRESS,
+    ROUND(AVG(r.REVIEW_SCORE), 2) AS SCORE
+FROM REST_INFO i
+JOIN REST_REVIEW r
+  ON i.REST_ID = r.REST_ID
+WHERE i.ADDRESS LIKE '서울%'
+GROUP BY
+    i.REST_ID, i.REST_NAME, i.FOOD_TYPE, i.FAVORITES, i.ADDRESS
+ORDER BY
+    SCORE DESC,
+    i.FAVORITES DESC;
