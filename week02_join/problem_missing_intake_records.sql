@@ -7,7 +7,7 @@
 -- 정렬: ANIMAL_ID 오름차순
 
 SELECT
-    o.ANIMAL_ID,
+    o.ANIMAL_ID, 
     o.NAME
 FROM ANIMAL_OUTS o
 LEFT JOIN ANIMAL_INS i
