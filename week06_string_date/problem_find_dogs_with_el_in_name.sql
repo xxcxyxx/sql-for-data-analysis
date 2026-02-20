@@ -5,7 +5,7 @@
 -- - 대소문자 구분 없음 (MySQL은 기본적으로 대소문자 구분 안 함)
 -- - 개만 조회 → ANIMAL_TYPE = 'Dog'
 -- - 이름 기준 오름차순 정렬
--- 출력 컬럼: ANIMAL_ID, NAME
+-- 출력 컬럼: ANIMAL_ID, NAME 
 
 SELECT
     ANIMAL_ID,
