@@ -9,7 +9,7 @@
 -- 3) 종료 조건 반드시 필요
 
 WITH RECURSIVE hours AS (
-    SELECT 0 AS hour
+    SELECT 0 AS hour 
     UNION ALL
     SELECT hour + 1
     FROM hours
