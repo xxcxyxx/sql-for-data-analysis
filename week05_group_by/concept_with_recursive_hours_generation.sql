@@ -9,16 +9,17 @@
 -- 3) 종료 조건 반드시 필요
 
 WITH RECURSIVE hours AS (
-    -- 1️⃣ 시작값 (Anchor)
     SELECT 0 AS hour
-
     UNION ALL
-
-    -- 2️⃣ 반복 부분 (Recursive)
     SELECT hour + 1
     FROM hours
-    WHERE hour < 23   -- 3️⃣ 종료 조건
+    WHERE hour < 23
 )
-
-SELECT *
-FROM hours;
+SELECT
+    h.hour AS HOUR,
+    COUNT(a.ANIMAL_ID) AS COUNT
+FROM hours h
+LEFT JOIN ANIMAL_OUTS a
+    ON HOUR(a.DATETIME) = h.hour
+GROUP BY h.hour
+ORDER BY h.hour;
