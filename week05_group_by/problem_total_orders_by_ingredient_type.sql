@@ -1,0 +1,16 @@
+-- 문제: 성분으로 구분한 아이스크림 총 주문량
+-- 유형: JOIN + GROUP BY + SUM + ORDER BY
+-- 핵심 포인트:
+-- 1) 맛(FLAVOR) 기준으로 주문 테이블(FIRST_HALF)과 성분 테이블(ICECREAM_INFO) 조인
+-- 2) 성분 타입(INGREDIENT_TYPE)별 총 주문량 합계 → SUM(TOTAL_ORDER)
+-- 3) 총 주문량이 작은 순으로 정렬
+-- 출력 컬럼: INGREDIENT_TYPE, TOTAL_ORDER(별칭)
+
+SELECT
+    i.INGREDIENT_TYPE,
+    SUM(f.TOTAL_ORDER) AS TOTAL_ORDER
+FROM FIRST_HALF f
+JOIN ICECREAM_INFO i
+  ON f.FLAVOR = i.FLAVOR
+GROUP BY i.INGREDIENT_TYPE
+ORDER BY TOTAL_ORDER ASC;
