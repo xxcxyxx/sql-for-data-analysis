@@ -1,0 +1,18 @@
+-- problem-users-with-high-total-sales
+-- 유형: JOIN + GROUP BY + SUM + HAVING
+-- 목표:
+-- 완료된 거래(DONE) 중 총 거래금액이 700,000원 이상인 사용자 조회
+-- 출력: USER_ID, NICKNAME, TOTAL_SALES
+-- 정렬: TOTAL_SALES 오름차순
+
+SELECT
+    u.USER_ID,
+    u.NICKNAME,
+    SUM(b.PRICE) AS TOTAL_SALES
+FROM USED_GOODS_BOARD b
+JOIN USED_GOODS_USER u
+  ON b.WRITER_ID = u.USER_ID
+WHERE b.STATUS = 'DONE'
+GROUP BY u.USER_ID, u.NICKNAME
+HAVING SUM(b.PRICE) >= 700000
+ORDER BY TOTAL_SALES ASC;
