@@ -1,0 +1,23 @@
+-- 문제: 년, 월, 성별 별 상품 구매 회원 수 구하기
+-- 유형: JOIN / GROUP BY / COUNT DISTINCT / DATE 함수
+-- 핵심: 판매 데이터와 회원 정보를 JOIN 후 년, 월, 성별 기준 구매 회원 수 집계
+-- 조건: 성별 정보 NULL 제외
+-- 정렬: YEAR ASC, MONTH ASC, GENDER ASC
+
+SELECT
+    YEAR(S.SALES_DATE) AS YEAR,
+    MONTH(S.SALES_DATE) AS MONTH,
+    U.GENDER,
+    COUNT(DISTINCT U.USER_ID) AS USERS
+FROM ONLINE_SALE S
+JOIN USER_INFO U
+    ON S.USER_ID = U.USER_ID
+WHERE U.GENDER IS NOT NULL
+GROUP BY
+    YEAR(S.SALES_DATE),
+    MONTH(S.SALES_DATE),
+    U.GENDER
+ORDER BY
+    YEAR ASC,
+    MONTH ASC,
+    U.GENDER ASC;
