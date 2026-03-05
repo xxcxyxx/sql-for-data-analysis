@@ -1,0 +1,28 @@
+-- 문제: 언어별 개발자 분류하기
+-- 유형: BITWISE 연산 / CASE WHEN / SUBQUERY
+-- 핵심: 개발자의 SKILL_CODE를 비트 연산으로 확인하여 GRADE 분류
+-- 조건:
+-- A : Front End + Python
+-- B : C#
+-- C : Front End
+-- 정렬: GRADE ASC, ID ASC
+
+SELECT
+    CASE
+        WHEN (D.SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'Python')) > 0
+             AND (D.SKILL_CODE & (SELECT SUM(CODE) FROM SKILLCODES WHERE CATEGORY = 'Front End')) > 0
+        THEN 'A'
+        WHEN (D.SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'C#')) > 0
+        THEN 'B'
+        WHEN (D.SKILL_CODE & (SELECT SUM(CODE) FROM SKILLCODES WHERE CATEGORY = 'Front End')) > 0
+        THEN 'C'
+    END AS GRADE,
+    D.ID,
+    D.EMAIL
+FROM DEVELOPERS D
+WHERE
+    (D.SKILL_CODE & (SELECT SUM(CODE) FROM SKILLCODES WHERE CATEGORY = 'Front End')) > 0
+    OR (D.SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'C#')) > 0
+ORDER BY
+    GRADE ASC,
+    ID ASC;
