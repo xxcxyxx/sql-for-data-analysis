@@ -1,0 +1,23 @@
+-- 문제: 물고기 종류 별 대어 찾기
+-- 유형: GROUP BY / MAX / JOIN
+-- 핵심: 물고기 종류별 최대 길이를 찾은 뒤 해당 물고기 조회
+-- 조건: FISH_TYPE 별 MAX(LENGTH)
+-- 정렬: ID ASC
+
+SELECT
+    F.ID,
+    N.FISH_NAME,
+    F.LENGTH
+FROM FISH_INFO F
+JOIN FISH_NAME_INFO N
+    ON F.FISH_TYPE = N.FISH_TYPE
+JOIN (
+    SELECT
+        FISH_TYPE,
+        MAX(LENGTH) AS MAX_LENGTH
+    FROM FISH_INFO
+    GROUP BY FISH_TYPE
+) M
+    ON F.FISH_TYPE = M.FISH_TYPE
+    AND F.LENGTH = M.MAX_LENGTH
+ORDER BY F.ID ASC;
